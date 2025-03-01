@@ -1,11 +1,14 @@
 import './App.css'
-// import { SpotlightPreview } from './components/elements/Background'
-import { ShootingStarsAndStarsBackgroundDemo } from './components/elements/Background2'
-import { BackgroundBeamsDemo } from './components/elements/BeamsBackground'
+import { Routes, Route, BrowserRouter } from 'react-router';
+import LandingPage from './LandingPage';
 function App() {
   return (
     <>
-      <BackgroundBeamsDemo />
+    <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<LandingPage/>}/>
+    </Routes>
+    </BrowserRouter>
     </>
   );
 }
