@@ -17,6 +17,7 @@ import {
 
 export function LoginPage() {
   const navigate = useNavigate();
+  
   const handleSubmit = (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
     console.log("Form submitted");
@@ -35,7 +36,11 @@ export function LoginPage() {
                         flow yet
                     </p> */}
 
-          <form className="my-8">
+          <form className="my-8" onSubmit={(e)=> {
+            e.preventDefault();
+            console.log("Form submitted");
+            // navigate("/dashboard");
+          }}>
             {/* <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mb-4">
                             <LabelInputContainer>
                                 <Label htmlFor="firstname">First name</Label>

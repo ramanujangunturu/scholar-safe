@@ -51,4 +51,10 @@ export default tseslint.config({
     ...reactDom.configs.recommended.rules,
   },
 })
+
+npm i motion clsx tailwind-merge @radix-ui/react-label @tabler/icons-react
+npm i motion clsx tailwind-merge @tabler/icons-react
+npm i motion clsx tailwind-merge
+
+
 ```

@@ -1,0 +1,30 @@
+@keyframes fadein {
+    from {
+        margin-top: 5%;
+        opacity:1;
+        height:30%;
+    }
+    to {
+        margin-top: 0%;
+        opacity:0;
+        height:0%;
+    }
+  }
+@keyframes slideUp {
+    0% {
+        margin-top: 5%;
+    }
+
+    100% {
+        margin-top: 0%;
+    }
+}
+  
+.animate-slideup {
+    animation: slideUp 4s ease-in-out forwards;
+    /* animation-delay: 1s; */
+}
+    .animate-fadein {
+        animation: fadein 2s ease-in-out forwards;
+    }
+  

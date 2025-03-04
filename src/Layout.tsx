@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import { useState } from "react";
 import { Sidebar, SidebarBody, SidebarLink } from "./components/ui/SideBarComponent";
 // import { Input } from "./components/ui/input";
 import {
@@ -8,12 +8,12 @@ import {
   IconSettings,
   IconUserBolt,
 } from "@tabler/icons-react";
-import { Link, useLocation} from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import { cn } from "./lib/utils";
-import Search from "./components/elements/Search";
+import { Outlet } from "react-router-dom";
 
-export function SidebarDemo() {
+export function Layout() {
   const location = useLocation();
 
   const links = [
@@ -71,7 +71,9 @@ export function SidebarDemo() {
           </div>
         </SidebarBody>
       </Sidebar>
-      <Dashboard currentPath={location.pathname} />
+      <Dashboard currentPath={location.pathname}>
+        <Outlet />
+      </Dashboard>
     </div>
   );
 }
@@ -106,23 +108,13 @@ export const LogoIcon = () => {
 };
 
 // Dummy dashboard component with content
-const Dashboard = ({ currentPath }: { currentPath: string }) => {
+const Dashboard = ({ currentPath,children }: {currentPath : string, children : React.ReactNode}) => {
     console.log(currentPath)
   return (
-    // <div className="w-full bg-black flex flex-col">
-    //   <div className="w-[100%] h-[10%] flex flex-row justify-evenly">
-    //     <div className=" h-[49%] w-[80%]  mt-[2%]  ">
-    //       <Input type="search" />
-    //     </div>
-    //     <div className="border bg-white h-[49%] w-[5%] mt-[2%]">
-    //       <button> search</button>
-    //     </div>
-    //   </div>
-      
-    // </div>
-    <>
-     <Search/>
-    </>
+    <div className="w-full bg-black flex flex-col">
+      <div className="w-full flex-1 p-4">
+        {children}
+      </div>
+    </div>
   );
 };
-
