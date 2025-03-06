@@ -32,7 +32,7 @@ export function SidebarDemo() {
       ),
     },
     {
-      label: "Settings",
+      label: "AboutUs",
       href: "/settings",
       icon: (
         <IconSettings className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
@@ -71,7 +71,7 @@ export function SidebarDemo() {
           </div>
         </SidebarBody>
       </Sidebar>
-      <Dashboard currentPath={location.pathname} />
+      <Dashboard currentPath={location.pathname} open={open} />
     </div>
   );
 }
@@ -88,7 +88,7 @@ export const Logo = () => {
         animate={{ opacity: 1 }}
         className="font-medium text-black dark:text-white whitespace-pre"
       >
-        Acet Labs
+        Scholar Safe
       </motion.span>
     </Link>
   );
@@ -106,23 +106,23 @@ export const LogoIcon = () => {
 };
 
 // Dummy dashboard component with content
-const Dashboard = ({ currentPath }: { currentPath: string }) => {
-    console.log(currentPath)
-  return (
-    // <div className="w-full bg-black flex flex-col">
-    //   <div className="w-[100%] h-[10%] flex flex-row justify-evenly">
-    //     <div className=" h-[49%] w-[80%]  mt-[2%]  ">
-    //       <Input type="search" />
-    //     </div>
-    //     <div className="border bg-white h-[49%] w-[5%] mt-[2%]">
-    //       <button> search</button>
-    //     </div>
-    //   </div>
-      
-    // </div>
-    <>
-     <Search/>
-    </>
-  );
+const Dashboard = ({ currentPath, open }: { currentPath: string, open:boolean }) => {
+  console.log(currentPath)
+return (
+  // <div className="w-full bg-black flex flex-col">
+  //   <div className="w-[100%] h-[10%] flex flex-row justify-evenly">
+  //     <div className=" h-[49%] w-[80%]  mt-[2%]  ">
+  //       <Input type="search" />
+  //     </div>
+  //     <div className="border bg-white h-[49%] w-[5%] mt-[2%]">
+  //       <button> search</button>
+  //     </div>
+  //   </div>
+    
+  // </div>
+  <>
+    <Search open={open} />
+  </>
+);
 };
 

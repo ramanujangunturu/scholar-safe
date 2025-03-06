@@ -8,6 +8,7 @@ import DashBoard from './DashBoard';
 import Profile from './Profile';
 import Settings from './Settings';
 import { SidebarDemo } from './SideBar';
+// import  PopUp  from './components/elements/PopUp';
 
 function App() {
   return (
