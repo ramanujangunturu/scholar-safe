@@ -1,25 +1,29 @@
 "use client";
 import React, { useState } from "react";
-import { Sidebar, SidebarBody, SidebarLink } from "./components/ui/SideBarComponent";
-// import { Input } from "./components/ui/input";
+import {
+  Sidebar,
+  SidebarBody,
+  SidebarLink,
+} from "./components/ui/SideBarComponent";
 import {
   IconArrowLeft,
   IconBrandTabler,
   IconSettings,
   IconUserBolt,
 } from "@tabler/icons-react";
-import { Link, useLocation} from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import { cn } from "./lib/utils";
 import Search from "./components/elements/Search";
 
 export function SidebarDemo() {
+  // console.log(sessionStorage.getItem('email'));
   const location = useLocation();
 
   const links = [
     {
       label: "Dashboard",
-      href: "/dashboard",
+      href: "/homepage",
       icon: (
         <IconBrandTabler className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
       ),
@@ -53,7 +57,7 @@ export function SidebarDemo() {
     <div
       className={cn(
         "flex flex-col md:flex-row bg-gray-100 dark:bg-neutral-800 w-full flex-1  mx-auto border border-neutral-200 dark:border-neutral-700 overflow-hidden",
-        "h-screen" // for your use case, use `h-screen` instead of `h-[60vh]`
+        "h-screen" 
       )}
     >
       <Sidebar open={open} setOpen={setOpen}>
@@ -61,12 +65,10 @@ export function SidebarDemo() {
           <div className="flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
             {open ? <Logo /> : <LogoIcon />}
             <div className="mt-8 flex flex-col gap-2">
-              {links.map((link, idx) => (
-                <SidebarLink
-                  key={idx}
-                  link={link}
-                />
-              ))}
+              {links.map((link, idx) => {
+                // console.log("link", link);
+                return <SidebarLink key={idx} link={link} />;
+              })}
             </div>
           </div>
         </SidebarBody>
@@ -106,23 +108,17 @@ export const LogoIcon = () => {
 };
 
 // Dummy dashboard component with content
-const Dashboard = ({ currentPath, open }: { currentPath: string, open:boolean }) => {
-  console.log(currentPath)
-return (
-  // <div className="w-full bg-black flex flex-col">
-  //   <div className="w-[100%] h-[10%] flex flex-row justify-evenly">
-  //     <div className=" h-[49%] w-[80%]  mt-[2%]  ">
-  //       <Input type="search" />
-  //     </div>
-  //     <div className="border bg-white h-[49%] w-[5%] mt-[2%]">
-  //       <button> search</button>
-  //     </div>
-  //   </div>
-    
-  // </div>
-  <>
-    <Search open={open} />
-  </>
-);
+const Dashboard = ({
+  currentPath,
+  open,
+}: {
+  currentPath: string;
+  open: boolean;
+}) => {
+  console.log(currentPath);
+  return (
+    <>
+      <Search open={open} />
+    </>
+  );
 };
-

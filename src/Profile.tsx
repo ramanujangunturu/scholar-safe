@@ -103,7 +103,6 @@ export default function ProfilePage() {
   }
 
   const handleSaveProfile = () => {
-    // Here you would typically save the profile to a database
     setIsEditing(false)
     console.log("Profile saved:", profile)
   }
@@ -358,11 +357,4 @@ export default function ProfilePage() {
   )
 }
 
-// function Profile(){
-//     return(
-//         <>
-//         </>
-//     )
-// }
 
-// export default Profile;

@@ -1,8 +1,9 @@
 import { BentoGrid, BentoGridItem } from "../ui/bento-grid";
 import {
   IconArrowWaveRightUp,
-  IconBoxAlignRightFilled,
   IconBoxAlignTopLeft,
+  // IconBoxAlignRightFilled,
+  // IconBoxAlignTopLeft,
   IconClipboardCopy,
   IconFileBroken,
   IconSignature,
@@ -11,8 +12,8 @@ import {
 
 export function BentoGridDemo({open}:{open:boolean}) {
   return (
-    <div className="w-[90%] mx-auto  h-[80vh]">
-      <BentoGrid className="w-[90%] mx-auto"   >
+    <div className="w-[90%] mx-auto  h-full  ">
+      <BentoGrid className="w-[90%] h-full    ">
         {items.map((item, i) => (
           <BentoGridItem
             key={i}
@@ -20,8 +21,9 @@ export function BentoGridDemo({open}:{open:boolean}) {
             description={item.description}
             header={item.header}
             icon={item.icon}
-            className={i === 3 || i === 6 ? "md:col-span-2" : ""}
             open={open}
+            url={item.url }
+            // className="h-1/2"
           />
         ))}
       </BentoGrid>
@@ -35,22 +37,25 @@ const Skeleton = () => (
 
 const items = [
   {
-    title: "The Dawn of Innovation",
-    description: "Explore the birth of groundbreaking ideas and inventions.",
+    title: "Upload The Project",
+    description: "Upload your project files securely.",
     header: <Skeleton />,
     icon: <IconClipboardCopy className="h-4 w-4 text-neutral-500" />,
+    url:"/settings",
   },
   {
     title: "The Digital Revolution",
     description: "Dive into the transformative power of technology.",
     header: <Skeleton />,
     icon: <IconFileBroken className="h-4 w-4 text-neutral-500" />,
+    url:"/settings",
   },
   {
     title: "The Art of Design",
     description: "Discover the beauty of thoughtful and functional design.",
     header: <Skeleton />,
     icon: <IconSignature className="h-4 w-4 text-neutral-500" />,
+    url:"/settings",
   },
   {
     title: "The Power of Communication",
@@ -58,23 +63,26 @@ const items = [
       "Understand the impact of effective communication in our lives.",
     header: <Skeleton />,
     icon: <IconTableColumn className="h-4 w-4 text-neutral-500" />,
+    url:"/settings",
   },
   {
     title: "The Pursuit of Knowledge",
     description: "Join the quest for understanding and enlightenment.",
     header: <Skeleton />,
     icon: <IconArrowWaveRightUp className="h-4 w-4 text-neutral-500" />,
+    url:"/settings",
   },
   {
     title: "The Joy of Creation",
     description: "Experience the thrill of bringing ideas to life.",
     header: <Skeleton />,
     icon: <IconBoxAlignTopLeft className="h-4 w-4 text-neutral-500" />,
+    url:"/settings",
   },
-  {
-    title: "The Spirit of Adventure",
-    description: "Embark on exciting journeys and thrilling discoveries.",
-    header: <Skeleton />,
-    icon: <IconBoxAlignRightFilled className="h-4 w-4 text-neutral-500" />,
-  },
+  // {
+  //   title: "The Spirit of Adventure",
+  //   description: "Embark on exciting journeys and thrilling discoveries.",
+  //   header: <Skeleton />,
+  //   icon: <IconBoxAlignRightFilled className="h-4 w-4 text-neutral-500" />,
+  // },
 ];

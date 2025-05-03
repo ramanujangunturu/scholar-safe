@@ -1,7 +1,10 @@
 "use client";
 import { useState } from "react";
-import { Sidebar, SidebarBody, SidebarLink } from "./components/ui/SideBarComponent";
-// import { Input } from "./components/ui/input";
+import {
+  Sidebar,
+  SidebarBody,
+  SidebarLink,
+} from "./components/ui/SideBarComponent";
 import {
   IconArrowLeft,
   IconBrandTabler,
@@ -19,7 +22,7 @@ export function Layout() {
   const links = [
     {
       label: "Dashboard",
-      href: "/dashboard",
+      href: "/homepage",
       icon: (
         <IconBrandTabler className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
       ),
@@ -53,7 +56,7 @@ export function Layout() {
     <div
       className={cn(
         "flex flex-col md:flex-row bg-gray-100 dark:bg-neutral-800 w-full flex-1  mx-auto border border-neutral-200 dark:border-neutral-700 overflow-hidden",
-        "h-screen" // for your use case, use `h-screen` instead of `h-[60vh]`
+        "h-screen" 
       )}
     >
       <Sidebar open={open} setOpen={setOpen}>
@@ -62,10 +65,7 @@ export function Layout() {
             {open ? <Logo /> : <LogoIcon />}
             <div className="mt-8 flex flex-col gap-2">
               {links.map((link, idx) => (
-                <SidebarLink
-                  key={idx}
-                  link={link}
-                />
+                <SidebarLink key={idx} link={link} />
               ))}
             </div>
           </div>
@@ -107,14 +107,17 @@ export const LogoIcon = () => {
   );
 };
 
-// Dummy dashboard component with content
-const Dashboard = ({ currentPath,children }: {currentPath : string, children : React.ReactNode}) => {
-    console.log(currentPath)
+const Dashboard = ({
+  currentPath,
+  children,
+}: {
+  currentPath: string;
+  children: React.ReactNode;
+}) => {
+  console.log(currentPath);
   return (
     <div className="w-full bg-black flex flex-col">
-      <div className="w-full flex-1 p-4">
-        {children}
-      </div>
+      <div className="w-full flex-1 p-4">{children}</div>
     </div>
   );
 };
