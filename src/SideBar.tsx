@@ -15,6 +15,7 @@ import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import { cn } from "./lib/utils";
 import Search from "./components/elements/Search";
+// import { boolean } from "zod";
 
 export function SidebarDemo() {
   // console.log(sessionStorage.getItem('email'));
@@ -25,38 +26,39 @@ export function SidebarDemo() {
       label: "Dashboard",
       href: "/homepage",
       icon: (
-        <IconBrandTabler className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+        <IconBrandTabler color="white" className="bg-white text-neutral-200 h-5 w-5 flex-shrink-0" />
       ),
     },
     {
       label: "Profile",
       href: "/profile",
       icon: (
-        <IconUserBolt className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+        <IconUserBolt  className="text-neutral-200 h-5 w-5 flex-shrink-0" />
       ),
     },
     {
       label: "AboutUs",
       href: "/settings",
       icon: (
-        <IconSettings className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+        <IconSettings className="text-neutral-200 h-5 w-5 flex-shrink-0" />
       ),
     },
     {
       label: "Logout",
       href: "/logout",
       icon: (
-        <IconArrowLeft className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+        <IconArrowLeft className="text-neutral-200 h-5 w-5 flex-shrink-0" />
       ),
     },
   ];
 
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState<boolean>(false);
+  localStorage.setItem("open", open.toString());
 
   return (
     <div
       className={cn(
-        "flex flex-col md:flex-row bg-gray-100 dark:bg-neutral-800 w-full flex-1  mx-auto border border-neutral-200 dark:border-neutral-700 overflow-hidden",
+        "flex flex-col md:flex-row bg-gray-100  w-full flex-1  mx-auto border border-neutral-700 overflow-hidden",
         "h-screen" 
       )}
     >
@@ -84,11 +86,11 @@ export const Logo = () => {
       to="#"
       className="font-normal flex space-x-2 items-center text-sm text-black py-1 relative z-20"
     >
-      <div className="h-5 w-6 bg-black dark:bg-white rounded-br-lg rounded-tr-sm rounded-tl-lg rounded-bl-sm flex-shrink-0" />
+      <div className="h-5 w-6 bg-white rounded-br-lg rounded-tr-sm rounded-tl-lg rounded-bl-sm flex-shrink-0" />
       <motion.span
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        className="font-medium text-black dark:text-white whitespace-pre"
+        className="font-medium text-white whitespace-pre"
       >
         Scholar Safe
       </motion.span>
@@ -102,7 +104,7 @@ export const LogoIcon = () => {
       to="#"
       className="font-normal flex space-x-2 items-center text-sm text-black py-1 relative z-20"
     >
-      <div className="h-5 w-6 bg-black dark:bg-white rounded-br-lg rounded-tr-sm rounded-tl-lg rounded-bl-sm flex-shrink-0" />
+      <div className="h-5 w-6 bg-white rounded-br-lg rounded-tr-sm rounded-tl-lg rounded-bl-sm flex-shrink-0" />
     </Link>
   );
 };

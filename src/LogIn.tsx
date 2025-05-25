@@ -67,8 +67,8 @@ export function LoginPage() {
     <>
       <BackgroundBeamsDemo>
         <Toaster richColors />
-        <div className="  relative max-w-md w-[100%] mx-auto rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-white dark:bg-black z-10">
-          <h2 className="font-bold text-xl text-neutral-800 dark:text-neutral-200">
+        <div className="  relative max-w-md w-[100%] mx-auto rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-black z-10">
+          <h2 className="font-bold text-xl text-neutral-200">
             Welcome to SCHOLAR-SAFE
           </h2>
           <form
@@ -112,16 +112,16 @@ export function LoginPage() {
             <div className="bg-gradient-to-r from-transparent via-neutral-300 dark:via-neutral-700 to-transparent my-8 h-[1px] w-full" />
 
             <div className="flex flex-col space-y-4">
-              <button className=" relative group/btn flex space-x-2 items-center justify-start px-4 w-full text-black rounded-md h-10 font-medium shadow-input bg-gray-50 dark:bg-zinc-900 dark:shadow-[0px_0px_1px_1px_var(--neutral-800)]">
-                <IconBrandGithub className="h-4 w-4 text-neutral-800 dark:text-neutral-300" />
-                <span className="text-neutral-700 dark:text-neutral-300 text-sm">
+              <button className=" relative group/btn flex space-x-2 items-center justify-start px-4 w-full text-black rounded-md h-10 font-medium shadow-input bg-zinc-900 dark:shadow-[0px_0px_1px_1px_var(--neutral-800)]">
+                <IconBrandGithub className="h-4 w-4 text-neutral-300" />
+                <span className="text-neutral-300 text-sm">
                   GitHub
                 </span>
                 <BottomGradient />
               </button>
-              <button className="relative group/btn flex space-x-2 items-center justify-start px-4 w-full text-black rounded-md h-10 font-medium shadow-input bg-gray-50 dark:bg-zinc-900 dark:shadow-[0px_0px_1px_1px_var(--neutral-800)] z-10">
-                <IconBrandGoogle className="h-4 w-4 text-neutral-800 dark:text-neutral-300" />
-                <span className="text-neutral-700 dark:text-neutral-300 text-sm z-10">
+              <button className="relative group/btn flex space-x-2 items-center justify-start px-4 w-full text-black rounded-md h-10 font-medium shadow-input bg-zinc-900 dark:shadow-[0px_0px_1px_1px_var(--neutral-800)] z-10">
+                <IconBrandGoogle className="h-4 w-4 text-neutral-300" />
+                <span className="text-neutral-300 text-sm z-10">
                   Google
                 </span>
                 <span className="absolute inset-0 z-0 opacity-0 w-full h-full">
@@ -147,10 +147,10 @@ export function LoginPage() {
                 <BottomGradient />
               </button>
               <button
-                className=" relative group/btn flex space-x-2 items-center justify-start px-4 w-full text-black rounded-md h-10 font-medium shadow-input bg-gray-50 dark:bg-zinc-900 dark:shadow-[0px_0px_1px_1px_var(--neutral-800)]"
+                className=" relative group/btn flex space-x-2 items-center justify-start px-4 w-full text-black rounded-md h-10 font-medium shadow-input bg-zinc-900 dark:shadow-[0px_0px_1px_1px_var(--neutral-800)]"
                 onClick={() => navigate("/SignUp")}
               >
-                <span className="text-neutral-700 dark:text-neutral-300 text-sm">
+                <span className="text-neutral-300 text-sm">
                   SignUp
                 </span>
                 <BottomGradient />

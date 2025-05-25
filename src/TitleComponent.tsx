@@ -4,8 +4,8 @@ import { Label } from "./components/ui/label";
 import { LabelInputContainer } from "./LogIn";
 import { Button } from "./components/elements/Button";
 
-const TitleComponent = ({ title, setTitle, yearDone, setYear, member, setMember }: { title: string; setTitle: (newTitle: string) => void; yearDone: number; setYear: (newYear: number) => void; member: Array<string>; setMember: (newMember: string[]) => void; }) => {
-    const [count, setCount] = useState(3);
+const TitleComponent = ({ title, setTitle, yearDone, setYear, member, setMember }: { title: string, setTitle: (newTitle: string) => void, yearDone: number, setYear: (newYear: number) => void; member: Array<string>, setMember: (newMember: string[]) => void; }) => {
+    const [count, setCount] = useState(4);
    
 
     return (

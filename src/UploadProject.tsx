@@ -6,6 +6,7 @@ import { BackgroundBeamsDemo } from "./components/elements/BeamsBackground";
 import { FloatingDockDemo } from './components/elements/FloatingDockMemo';
 import { useNavigate } from 'react-router';
 import TitleComponent from './TitleComponent';
+// import { get } from 'http';
 
 export const UploadProject = () => {
   const navigate = useNavigate();
@@ -92,8 +93,10 @@ export const UploadProject = () => {
     if (num === 4) setTechStack(val.split(',').map(item => item.trim()));
   };
 
+  const opens = localStorage.getItem("open");
+  console.log( opens);
   return (
-   
+     
     <>
     <BackgroundBeamsDemo>
 

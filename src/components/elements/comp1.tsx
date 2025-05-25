@@ -31,7 +31,7 @@ const Icon = () => {
       fill="none"
       viewBox="0 0 24 24"
       stroke-width="1.5"
-      stroke="currentColor"
+      stroke="white"
       className="h-4 w-4 text-white stroke-2"
     >
       <path

@@ -4,11 +4,12 @@ import { useState } from "react"
 import { X, Users, Code } from "lucide-react"
 
 type Project = {
-  project_pdf_description: string
+  project_description: string
   project_title: string
   team_members: Array<string>
   tech_stack: Array<string>
   year_done: number
+  project_pdf_link: string
 }
 
 const ProjectDescription = ({
@@ -22,9 +23,9 @@ const ProjectDescription = ({
 }) => {
   const project = data[id]
   const [isHovered, setIsHovered] = useState(false)
-
-  if (!project) return null
-
+   console.log("Project ID:", data)
+  if (!project) return null;
+  console.log(data)
   return (
     <div
       className="relative h-[700px] w-[1100px] perspective-1000"
@@ -61,7 +62,7 @@ const ProjectDescription = ({
             transform transition-all duration-300 hover:translate-z-6 shadow-bottom-inner"
           >
             <h1
-              className="text-[70px] font-bold text-transparent bg-clip-text bg-gradient-to-r 
+              className="text-[50px] font-bold text-transparent bg-clip-text bg-gradient-to-r 
               from-cyan-300 to-purple-400 leading-tight animate-shimmer"
             >
               {project.project_title}
@@ -75,13 +76,22 @@ const ProjectDescription = ({
           {/* Project description */}
           <div
             className="h-3/4 w-full p-6 overflow-auto custom-scrollbar bg-[#111827] 
-            transform transition-transform duration-300 hover:translate-z-2 shadow-inner-subtle"
+            transform transition-transform duration-300 hover:translate-z-2 shadow-inner-subtle flex flex-row"
           >
             <div
-              className="prose prose-invert max-w-none text-justify whitespace-pre-line leading-relaxed tracking-wide
-              prose-headings:text-cyan-300 prose-a:text-purple-400"
+              className="w-full h-full prose prose-invert  text-justify whitespace-pre-line leading-relaxed tracking-wide
+              prose-headings:text-cyan-300 prose-a:text-purple-400 flex flex-row "
             >
-              {project.project_pdf_description}
+              {/* {project.project_description} */}
+              {/* {project.project_pdf_link} */}
+                <iframe 
+                src={project.project_pdf_link}
+                className="w-full h-full flex items-center justify-center rounded-lg border-none shadow-md"
+                title="Project PDF"
+                frameBorder="0"
+                // sandbox="allow-same-origin allow-scripts"
+                ></iframe>
+              
             </div>
           </div>
         </div>
