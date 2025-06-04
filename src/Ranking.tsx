@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { IconX } from '@tabler/icons-react';
 import { BackgroundBeamsDemo } from "./components/elements/BeamsBackground";
 import axios from 'axios';
-import ProjectDescription from "./ProjectDescription";
 
 interface Project {
   _id: string;
@@ -68,10 +67,89 @@ const ProjectCard: React.FC<{ project: Project; onClick: () => void }> = ({ proj
   );
 };
 
+const ProjectModal: React.FC<{ project: Project; onClose: () => void }> = ({ project, onClose }) => {
+  return (
+    <div className="fixed inset-0 bg-black bg-opacity-80 z-50 flex items-center justify-center p-4">
+      <div className="bg-[#1a1a1a] rounded-[30px] max-w-3xl w-full max-h-[80vh] overflow-y-auto">
+        <div className="p-8">
+          <div className="flex justify-between items-start mb-6">
+            <div>
+              <div className="flex items-center gap-4 mb-2">
+                <span className={`
+                  w-12 h-12 rounded-full flex items-center justify-center font-bold text-2xl
+                  ${project.integer_rank === 1 ? 'bg-yellow-500 text-black' : 
+                    project.integer_rank === 2 ? 'bg-gray-400 text-black' : 
+                    project.integer_rank === 3 ? 'bg-orange-600 text-black' : 
+                    'bg-gray-700 text-white'}
+                `}>
+                  {project.integer_rank}
+                </span>
+                <h2 className="text-3xl font-bold text-white">{project.project_title}</h2>
+              </div>
+              <p className="text-gray-400">Year: {project.year_done}</p>
+            </div>
+            <button 
+              onClick={onClose}
+              className="p-2 hover:bg-gray-800 rounded-full transition-colors"
+            >
+              <IconX size={24} className="text-gray-400" />
+            </button>
+          </div>
+
+          <div className="space-y-6">
+            <div className="bg-black bg-opacity-40 p-6 rounded-xl">
+              <h3 className="text-xl font-bold mb-3 text-white">Project Description</h3>
+              <p className="text-gray-300 leading-relaxed whitespace-pre-line">
+                {project.project_description}
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="bg-black bg-opacity-40 p-6 rounded-xl">
+                <h3 className="text-xl font-bold mb-3 text-white">Team Members</h3>
+                <div className="space-y-2">
+                  {project.team_members.map((member, index) => (
+                    <div key={index} className="flex items-center gap-2">
+                      <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                      <span className="text-gray-300">{member}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="bg-black bg-opacity-40 p-6 rounded-xl">
+                <h3 className="text-xl font-bold mb-3 text-white">Tech Stack</h3>
+                <div className="flex flex-wrap gap-2">
+                  {project.tech_stack.map((tech, index) => (
+                    <span key={index} className="px-3 py-1 bg-gray-800 rounded-full text-sm text-gray-300">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-black bg-opacity-40 p-6 rounded-xl">
+              <h3 className="text-xl font-bold mb-3 text-white">Project Resources</h3>
+              <a 
+                href={project.project_pdf_link} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors text-white"
+              >
+                View Project PDF
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 function Ranking() {
   const [projects, setProjects] = useState<Project[]>([]);
-  const [view, setView] = useState(false);
-  const [id, setId] = useState<number>(0);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -102,7 +180,7 @@ function Ranking() {
               <h1 className="text-4xl font-bold text-white">Project Rankings</h1>
             </div>
             
-            <div className="h-[80%] w-[100%] flex flex-wrap justify-center gap-6 overflow-y-auto" >
+            <div className="h-[80%] w-[100%] flex flex-wrap justify-center gap-6 overflow-y-auto">
               {loading ? (
                 <div className="flex justify-center items-center h-64">
                   <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-white"></div>
@@ -112,14 +190,11 @@ function Ranking() {
                   {error}
                 </div>
               ) : (
-                projects.map((project, index) => (
+                projects.map((project) => (
                   <ProjectCard 
                     key={project._id}
                     project={project}
-                    onClick={() => {
-                      setView(true);
-                      setId(index);
-                    }}
+                    onClick={() => setSelectedProject(project)}
                   />
                 ))
               )}
@@ -128,10 +203,11 @@ function Ranking() {
         </BackgroundBeamsDemo>
       </div>
 
-      {view && (
-        <div className="fixed inset-0 bg-black bg-opacity-80 z-50 flex items-center justify-center">
-          <ProjectDescription id={id} data={projects} setView={setView} />
-        </div>
+      {selectedProject && (
+        <ProjectModal 
+          project={selectedProject}
+          onClose={() => setSelectedProject(null)}
+        />
       )}
     </>
   );
