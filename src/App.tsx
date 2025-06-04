@@ -10,6 +10,7 @@ import Settings from './Settings';
 import { UploadProject } from './UploadProject';
 import SearchProject from './SearchProject';
 import Home from './HomePage';
+import Ranking from './Ranking';
 // import HomePage from './HomePage';
 // import TitleComponent from './TitleComponent';
 
@@ -28,6 +29,7 @@ function App() {
           <Route path="settings" element={<Settings />} />
           <Route path="/upload" element={<UploadProject />} />
           <Route path="/homepage" element={<SearchProject/>} />
+          <Route path='/ranking' element={<Ranking/>}/>
         </Route>
         <Route path="/logout" element={<LoginPage />} />
       </Routes>

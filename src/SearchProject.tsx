@@ -18,7 +18,7 @@ function SearchProject(){
     const [searchValue, setSearch] = useState("");
     const [view, setView] = useState(false); 
     const handleKey = (e:React.KeyboardEvent<HTMLInputElement>) => {
-        if( e.key === "Enter" ){
+        if( e.key === "Enter" ){  
              console.log(searchValue);
              setSearch("");
         }
@@ -91,11 +91,31 @@ function SearchProject(){
          <BackgroundBeamsDemo>
            <div className="h-screen w-[100%]  flex flex-col ">
             <div className=" h-[20%] w-[100%] flex items-center justify-center  ">
-               <input type="file" className="h-[50%] w-[10%]  " onChange={(e)=>{setuploadedfile(e.target.files ? e.target.files[0] : null); }} />
+<div className="h-[50%] w-[10%] relative mr-4">  {/* Added margin-right */}
+  <input
+    type="file"
+    id="file-upload"
+    className="opacity-0 absolute inset-0 w-full h-full cursor-pointer"
+    onChange={(e) => { setuploadedfile(e.target.files ? e.target.files[0] : null); }}
+  />
+  <label
+    htmlFor="file-upload"
+    className="flex items-center justify-center h-full w-full border-2 border-white rounded-xl text-white cursor-pointer select-none px-2"
+  >
+    Upload PDF
+  </label>
+</div>
                {/* <button className="h-[50%] w-[10%] border-2 border-green-600">Upload File</button> */}
                 <div className="relative h-[50%] w-[70%] ">
-                    <input value={searchValue} onKeyDown={handleKey} onChange={(e)=>{setSearch(e.target.value)}} className="pl-10 h-full w-full  bg-transparent  opacity-100  border-2 border-white rounded-full text-[20px] p-3 text-white" type="text" placeholder="Search" >
-                    </input>
+<input
+  value={searchValue}
+  onKeyDown={handleKey}
+  onChange={(e) => setSearch(e.target.value)}
+  className="pl-10 pr-12 h-full w-full bg-transparent opacity-100 border-2 border-white rounded-full text-[20px] p-3 text-white"
+  type="text"
+  placeholder="Search"
+/>
+                    {/* </input> */}
                     <button onClick={handleSubmit}> <Search className="absolute right-3 top-1/2 transform -translate-x-4 -translate-y-1/2 text-white " /></button>
                 </div>
             </div> 
