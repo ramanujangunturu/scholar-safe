@@ -28,6 +28,7 @@ function SearchProject(){
     const [id,setId] = useState<number>(0);
     const [uploadedfile,setuploadedfile] = useState<File | null>(null);
     const [url,setUrl] = useState<string>("");
+    const [uploadStatus, setUploadStatus] = useState<string>("");
 
     const CLOUD_NAME = 'dkao49k4p';
     const UPLOAD_PRESET = 'Scholar-safe';
@@ -40,20 +41,26 @@ function SearchProject(){
 
     const after_do = async () =>{
       if (!uploadedfile) {
-        console.log("error bala");
+        setUploadStatus("No file selected");
         return;
       }
+      setUploadStatus("Uploading...");
       console.log("after_do inititated");
       const formData = new FormData();
       formData.append('file', uploadedfile);
       formData.append('upload_preset', UPLOAD_PRESET);
-      const res = await axios.post(
-        `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/raw/upload`,
-        formData
-      );
-      setUrl(res.data.secure_url);
-      console.log("Uploaded URL:", res.data.secure_url);
-      
+      try {
+        const res = await axios.post(
+          `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/raw/upload`,
+          formData
+        );
+        setUrl(res.data.secure_url);
+        setUploadStatus("Upload successful!");
+        console.log("Uploaded URL:", res.data.secure_url);
+      } catch (err) {
+        setUploadStatus("Upload failed.");
+        console.error(err);
+      }
     }
 
     useEffect(()=>{
@@ -92,18 +99,36 @@ function SearchProject(){
            <div className="h-screen w-[100%]  flex flex-col ">
             <div className=" h-[20%] w-[100%] flex items-center justify-center  ">
 <div className="h-[50%] w-[10%] relative mr-4">  {/* Added margin-right */}
-  <input
-    type="file"
-    id="file-upload"
-    className="opacity-0 absolute inset-0 w-full h-full cursor-pointer"
-    onChange={(e) => { setuploadedfile(e.target.files ? e.target.files[0] : null); }}
-  />
-  <label
-    htmlFor="file-upload"
-    className="flex items-center justify-center h-full w-full border-2 border-white rounded-xl text-white cursor-pointer select-none px-2"
-  >
-    Upload PDF
-  </label>
+  {uploadedfile && url ? (
+    <button
+      onClick={() => {
+        setuploadedfile(null);
+        setUrl("");
+        setUploadStatus("");
+      }}
+      className="flex items-center justify-center h-full w-full border-2 border-red-500 bg-red-600 rounded-xl text-white cursor-pointer select-none px-2"
+    >
+      Remove PDF
+    </button>
+  ) : (
+    <>
+      <input
+        type="file"
+        id="file-upload"
+        className="opacity-0 absolute inset-0 w-full h-full cursor-pointer"
+        onChange={(e) => { setuploadedfile(e.target.files ? e.target.files[0] : null); }}
+      />
+      <label
+        htmlFor="file-upload"
+        className="flex items-center justify-center h-full w-full border-2 border-white rounded-xl text-white cursor-pointer select-none px-2"
+      >
+        Upload PDF
+      </label>
+    </>
+  )}
+  {uploadStatus && (
+    <div className="text-xs text-white mt-1">{uploadStatus}</div>
+  )}
 </div>
                {/* <button className="h-[50%] w-[10%] border-2 border-green-600">Upload File</button> */}
                 <div className="relative h-[50%] w-[70%] ">
